@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import cover from './cover.png';
+import Upgrades from './Upgrades.js';
 
 function App() {
+  const [pages, setPages] = useState(0);
+
+  function onClick() {
+    setPages(pages+1);
+  }
+
+  function spendPages(cost) {
+    setPages(pages-cost)
+  }
+
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+       <p> A Dream of Winds of Winter </p>
+       <img src={cover} className="Cover" onClick={onClick}/>
+       <p> Click to help George write! </p>
+       {pages} pages written so far.
+       <Upgrades spend={spendPages}/>
     </div>
   );
 }
